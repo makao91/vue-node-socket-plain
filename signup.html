@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+    </div>
+
+<script>
+    var socket = io.connect();
+    socket.on('stream', function(data){
+        app.title = data.title;
+    });
+    socket.on('stream_second', function(data){
+        app.title = data.title;
+    });
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            title: "I'm an even uglier signup page. Fix me!"
+        },
+        methods: {
+        }
+    })
+</script>
+</body>
+</html>
